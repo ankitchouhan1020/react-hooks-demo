@@ -1,15 +1,16 @@
 import "./styles.css";
-import React, { useMemo, useReducer, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-function getInitialValue(startValue) {
-  console.log('Get Inital Value');
+function useReducer(reducer, initialState) {
+  const [ state, setState ] = useState(initialState);
 
-  let initialCount = startValue;
-  Array(100).fill(1).forEach(val => initialCount += val );
-  return initialCount;
+  const dispatch = (action) => setState(prevState => {
+    return reducer(prevState, action);
+  })
+
+  return [ state, dispatch];
 }
 
-// action doesn't necessarily needs to be an object.
 function reducer(prevState, actionType) {
   switch (actionType) {
     case 'INCREMENT':
@@ -28,7 +29,7 @@ function reducer(prevState, actionType) {
 }
 
 const useCounter = (initialValue = 0) => {
-  const [count, dispatch] = useReducer(reducer, initialValue, getInitialValue);
+  const [count, dispatch] = useReducer(reducer, initialValue);
 
   const handlers = useMemo(() => ({
     incrementCount: () => dispatch('INCREMENT'),
