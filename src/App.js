@@ -1,15 +1,35 @@
 import "./styles.css";
-import React, { useState } from 'react';
+import React, { useMemo, useReducer, useState } from 'react';
+
+// action doesn't necessarily needs to be an object.
+function reducer(prevState, actionType) {
+  switch (actionType) {
+    case 'INCREMENT':
+      return prevState + 1;
+
+    case 'DECREMENT':
+      return prevState - 1;
+
+    case 'RESET':
+      return 0;
+
+    default:
+      // bailout
+      return prevState;
+  }
+}
 
 const useCounter = (initialValue = 0) => {
-  const [count, setCount] = useState(initialValue);
-  
-  const incrementCount = () => setCount(count => count + 1);
-  const decrementCount = () => setCount(count => count - 1);
+  const [count, dispatch] = useReducer(reducer, initialValue);
 
-  const resetCount = () => setCount(0);
+  const handlers = useMemo(() => ({
+    incrementCount: () => dispatch('INCREMENT'),
+    decrementCount: () => dispatch('DECREMENT'),
+    resetCount: () => dispatch('RESET')
+  }), [dispatch])
 
-  return { count, incrementCount, decrementCount, resetCount };
+
+  return { count, ...handlers };
 }
 
 export default function App() {
