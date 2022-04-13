@@ -1,4 +1,83 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root{
+  --main-bg:#fff3f5;
+  --arrow-color:#ffbac1;
+  --number-bg:#ff4957;
+  --white:#fff;
+  --reset-bg:#231f20;
+  --reset-hover:#231f20b6;
+}
+body {
+  min-height: 100vh;
+  background: var(--main-bg);
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.arrow {
+  color: var(--arrow-color);
+  background: transparent;
+  font-size: 3rem;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.arrow:hover {
+  color: var(--number-bg);
+}
+.arrow:active {
+  animation: dash 0.3s linear;
+}
+@keyframes dash {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.value {
+  color: var(--white);
+  background: var(--number-bg);
+  font-size: 5rem;
+  font-weight: 500;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+}
+.reset {
+  width: 100%;
+  color: var(--white);
+  background: var(--reset-bg);
+  font-size: 1.2rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.reset:hover {
+  background: var(--reset-hover);
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.2);
+}
+.reset:active {
+  transform: scale(1.05) translateY(10px);
 }
