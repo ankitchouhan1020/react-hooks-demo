@@ -1,17 +1,25 @@
 import "./styles.css";
-import React, { useReducer } from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 
-function useState(initialState) {
-  const [ state, dispatch ] = useReducer((prevState, action) => {
-    return typeof action === 'function' ? action(prevState) : action
-  }, initialState);
-  
-  return [ state, dispatch];
+// Problem Statement
+// We need the last count value.
+
+function usePrevious(value) {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = value;
+  }, [ value]);
+
+  return ref.current;
 }
 
 
 const useCounter = (initialValue = 0) => {
   const [count, setCount] = useState(initialValue);
+  const prevCount = usePrevious(count);
+
+  console.log({ prevCount });
   
   const incrementCount = () => setCount(count => count + 1);
   const decrementCount = () => setCount(count => count - 1);
