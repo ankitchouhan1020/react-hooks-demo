@@ -1,5 +1,14 @@
 import "./styles.css";
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
+
+function useState(initialState) {
+  const [ state, dispatch ] = useReducer((prevState, action) => {
+    return typeof action === 'function' ? action(prevState) : action
+  }, initialState);
+  
+  return [ state, dispatch];
+}
+
 
 const useCounter = (initialValue = 0) => {
   const [count, setCount] = useState(initialValue);
