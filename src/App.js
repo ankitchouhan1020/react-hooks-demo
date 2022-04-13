@@ -1,23 +1,22 @@
 import "./styles.css";
 import React, { useState } from 'react';
 
-window.localStorage.setItem('count', 50);
-
-export default function App() {
-  // heavy IO operation
-  const initialState = Number(window.localStorage.getItem('count'))
-  console.log({ initialState })
-
-  const [count, setCount] = useState(initialState);
+const useCounter = (initialValue = 0) => {
+  const [count, setCount] = useState(initialValue);
   
-  // const initialState = () => Number(window.localStorage.getItem('count'))
   const incrementCount = () => setCount(count => count + 1);
   const decrementCount = () => setCount(count => count - 1);
 
   const resetCount = () => setCount(0);
 
+  return { count, incrementCount, decrementCount, resetCount };
+}
+
+export default function App() {
+  const { count, incrementCount, decrementCount, resetCount } = useCounter();
+
   const countColor = count > 0 ? '#FFEA00' : count < 0 ? '#231f20' : '#fff';
-  
+
   return (
     <>
       <div class="counter">
