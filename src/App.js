@@ -16,25 +16,25 @@ export default function App() {
   
   return (
     <>
-      <div class="counter">
+      <div className="counter">
         <button
-          class="increase arrow btn"
+          className="increase arrow btn"
           onClick={incrementCount}
         >
-          <i class="fas fa-chevron-up"></i>
+          <i className="fas fa-chevron-up"></i>
         </button>
 
-        <span class="value" style={{ color: countColor }}>{count}</span>
+        <span className="value" style={{ color: countColor }}>{count}</span>
 
         <button
-          class="decrease arrow btn"
+          className="decrease arrow btn"
           onClick={decrementCount}
         >
-          <i class="fas fa-chevron-down"></i>
+          <i className="fas fa-chevron-down"></i>
         </button>
       </div>
 
-      <button class="reset btn" onClick={resetCount}>Reset</button>
+      <button className="reset btn" onClick={resetCount}>Reset</button>
     </>
   );
 }
