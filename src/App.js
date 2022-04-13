@@ -4,12 +4,16 @@ import React, { useState } from 'react';
 export default function App() {
   const [count, setCount] = useState(0);
 
+  // console.log('Hey, I\'m re-rendering with ', count);
+ 
   const incrementCount = () => setCount(count => count + 1);
   const decrementCount = () => setCount(count => count - 1);
+
+  // bailout
   const resetCount = () => setCount(0);
 
   const countColor = count > 0 ? '#FFEA00' : count < 0 ? '#231f20' : '#fff';
-
+  
   return (
     <>
       <div class="counter">
