@@ -12,6 +12,16 @@
   --reset-bg:#231f20;
   --reset-hover:#231f20b6;
 }
+
+.dark{
+  --main-bg: #151D3B;
+  --arrow-color:#B85C38;
+  --number-bg:#5C3D2E;
+  --white:#525E75;
+  --reset-bg:#B85C38;
+  --reset-hover:#5C3D2E;
+}
+
 body {
   min-height: 100vh;
   background: var(--main-bg);
